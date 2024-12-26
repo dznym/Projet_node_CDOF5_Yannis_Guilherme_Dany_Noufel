@@ -1,0 +1,25 @@
+{
+    "name": "todo-app",
+    "version": "1.0.0",
+    "description": "Todo App using Node, Express and MongoDB",
+    "main": "app.js",
+    "scripts": {
+        "start": "app.js"
+    },
+    "author": "Groupe Dany Yannis Guilherme Noufel",
+    "license": "ISC",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/yannisandre/Projet_node_CDOF5_Yannis_Guilherme_Dany_Noufel.git"
+    },
+    "bugs": {
+        "url": "https://github.com/yannisandre/Projet_node_CDOF5_Yannis_Guilherme_Dany_Noufel/issues"
+    },
+    "homepage": "https://github.com/yannisandre/Projet_node_CDOF5_Yannis_Guilherme_Dany_Noufel#readme",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.7",
+        "express": "^4.21.2",
+        "mongoose": "^8.9.2"
+    }
+}
