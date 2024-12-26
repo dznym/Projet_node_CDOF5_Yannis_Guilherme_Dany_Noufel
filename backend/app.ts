@@ -1,17 +1,21 @@
 import express from 'express';
 import * as mongoose from 'mongoose';
 import * as dotenv from 'dotenv';
+import todoRoutes from './routes/ToDoRoutes';
 
-
-console.log('Application starting...');
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-console.log('Attempting to connect to MongoDB...');
+// Middleware
+app.use(express.json());
 
+// Routes
+app.use('/', todoRoutes);
+
+// MongoDB connection
 mongoose
   .connect(process.env.MONGODB_URL as string)
   .then(() => console.log('Connected To MongoDB'))
@@ -20,9 +24,4 @@ mongoose
     process.exit(1);
   });
 
-app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`))
-  .on('error', (err) => {
-    console.error('Failed to start server:', err);
-    process.exit(1);
-  });
-
+app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`));
