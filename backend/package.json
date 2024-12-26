@@ -4,7 +4,7 @@
     "description": "Todo App using Node, Express and MongoDB",
     "main": "app.js",
     "scripts": {
-        "start": "app.js"
+        "start": "node app.js"
     },
     "author": "Groupe Dany Yannis Guilherme Noufel",
     "license": "ISC",
