@@ -19,6 +19,19 @@ const addToDo = (text, setText, setToDo) => {
         setText("")
         getAllToDo(setToDo)
     })
+    .catch((err)=> console.log(err))
+
 }
 
-export {getAllToDo, addToDo}
+
+const updateToDo = (toDoId, text, setToDo, setText, setIsUpdating) => {
+    axios
+    .post(`${baseUrl}/update`, {_id: toDoId, text})
+    .then((data)=> {
+        setText("")
+        setIsUpdating(false)
+        getAllToDo(setToDo)
+    })
+    .catch((err)=> console.log(err))
+}
+export {getAllToDo, addToDo, updateToDo}
