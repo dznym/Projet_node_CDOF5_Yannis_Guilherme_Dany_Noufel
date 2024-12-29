@@ -30,7 +30,7 @@ const addToDo = (
     .then((response) => {
       console.log(response.data);
       setText("");
-      setCategory("");
+      setCategory("Work");
       getAllToDo(setToDo);
     })
     .catch((err) => console.log(err));
