@@ -2,7 +2,7 @@ import express from 'express';
 import * as mongoose from 'mongoose';
 import * as dotenv from 'dotenv';
 import todoRoutes from './routes/ToDoRoutes';
-
+import { swaggerUi, swaggerSpec } from './swaggerConfig';
 
 dotenv.config();
 const cors = require('cors');
@@ -13,7 +13,8 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// Routes
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 app.use('/', todoRoutes);
 
 // MongoDB connection
