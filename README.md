@@ -30,7 +30,7 @@ We used highcharts to display the distribution of each category.
 
 As an advanced feature we uploaded the website on the web to make a first step in real web development. We used netlify for frontend and render for backend.
 
-There is a presentation video that is running on netlify
+There is a presentation video that is running on netlify (video_presentation.mov)
 
 #### Individual work
 
@@ -84,7 +84,7 @@ frontend folder :
 npm start
 ```
 
-### To run online (advanced feature)
+### To run online
 
 We managed to deploy the website using Render for the backend and Netlify for the frontend. 
 
