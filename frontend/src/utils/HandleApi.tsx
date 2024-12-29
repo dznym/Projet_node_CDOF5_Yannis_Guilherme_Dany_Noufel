@@ -2,59 +2,71 @@ import axios from 'axios';
 
 const baseUrl = "http://localhost:5000";
 
-export interface ToDo {
+interface ToDo {
   _id: string;
   text: string;
-  completed: boolean;
+  category: string;
 }
 
-export const getAllToDo = (setRowData: React.Dispatch<React.SetStateAction<ToDo[]>>) => {
+const getAllToDo = (setToDo: React.Dispatch<React.SetStateAction<ToDo[]>>) => {
   axios
     .get<ToDo[]>(baseUrl)
     .then(({ data }) => {
       console.log('data --->', data);
-      setRowData(data);
+      setToDo(data);
     })
     .catch((err) => console.log(err));
 };
 
-export const addToDo = (
+const addToDo = (
   text: string,
-  setRowData: React.Dispatch<React.SetStateAction<ToDo[]>>
+  category: string,
+  setText: React.Dispatch<React.SetStateAction<string>>,
+  setCategory: React.Dispatch<React.SetStateAction<string>>,
+  setToDo: React.Dispatch<React.SetStateAction<ToDo[]>>
 ) => {
   axios
-    .post<ToDo>(`${baseUrl}/save`, { text, completed: false })
+    .post(`${baseUrl}/save`, { text, category })
     .then((response) => {
       console.log(response.data);
-      setRowData(prevData => [...prevData, response.data]);
+      setText("");
+      setCategory("");
+      getAllToDo(setToDo);
     })
     .catch((err) => console.log(err));
 };
 
-export const updateToDo = (
-  updatedToDo: ToDo,
-  setRowData: React.Dispatch<React.SetStateAction<ToDo[]>>
+const updateToDo = (
+  toDoId: string,
+  text: string,
+  category: string,
+  setToDo: React.Dispatch<React.SetStateAction<ToDo[]>>,
+  setText: React.Dispatch<React.SetStateAction<string>>,
+  setCategory: React.Dispatch<React.SetStateAction<string>>,
+  setIsUpdating: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   axios
-    .post(`${baseUrl}/update`, updatedToDo)
+    .post(`${baseUrl}/update`, { _id: toDoId, text, category })
     .then(() => {
-      setRowData(prevData => 
-        prevData.map(todo => 
-          todo._id === updatedToDo._id ? updatedToDo : todo
-        )
-      );
+      setText("");
+      setCategory("");
+      setIsUpdating(false);
+      getAllToDo(setToDo);
     })
     .catch((err) => console.log(err));
 };
 
-export const deleteToDo = (
+const deleteToDo = (
   _id: string,
-  setRowData: React.Dispatch<React.SetStateAction<ToDo[]>>
+  setToDo: React.Dispatch<React.SetStateAction<ToDo[]>>
 ) => {
   axios
     .post(`${baseUrl}/delete`, { _id })
-    .then(() => {
-      setRowData(prevData => prevData.filter(todo => todo._id !== _id));
+    .then((response) => {
+      console.log(response.data);
+      getAllToDo(setToDo);
     })
     .catch((err) => console.log(err));
 };
+
+export { getAllToDo, addToDo, updateToDo, deleteToDo };

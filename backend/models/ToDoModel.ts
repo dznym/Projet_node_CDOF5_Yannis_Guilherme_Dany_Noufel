@@ -1,13 +1,19 @@
-import mongoose, { Document } from 'mongoose';
+import mongoose, { Document, Schema } from 'mongoose';
 
-interface IToDo extends Document {
+export interface IToDo extends Document {
   text: string;
+  category: string;
+
 }
 
-const todoSchema = new mongoose.Schema({
+const todoSchema: Schema<IToDo> = new Schema({
     text: {
         type: String,
         required: true
+    },
+    category: {
+      type: String,
+      required: true
     }
 });
 

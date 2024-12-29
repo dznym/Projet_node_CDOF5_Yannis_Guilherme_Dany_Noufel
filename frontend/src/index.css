@@ -62,6 +62,14 @@ input{
   gap: 0.5rem;
 }
 
+.category {
+  font-size: 0.8em;
+  color: #666;
+  background-color: #f0f0f0;
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+
 .icon{
   cursor: pointer;
   font-size: 20px;

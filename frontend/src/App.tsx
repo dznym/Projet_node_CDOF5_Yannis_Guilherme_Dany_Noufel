@@ -1,19 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import ToDo from "./components/ToDo.tsx";
 import { getAllToDo, addToDo, updateToDo, deleteToDo } from "./utils/HandleApi.tsx";
-import { AgGridReact } from 'ag-grid-react';
-import 'ag-grid-community/styles/ag-grid.css';
-import 'ag-grid-community/styles/ag-theme-alpine.css';
-
+import Highcharts from 'highcharts';
+import HighchartsReact from 'highcharts-react-official';
 
 interface ToDoItem {
   _id: string;
   text: string;
+  category: string;
 }
+
+const categories = ["Work", "Personal", "Shopping", "Other"];
 
 const App: React.FC = () => {
   const [toDo, setToDo] = useState<ToDoItem[]>([]);
   const [text, setText] = useState<string>("");
+  const [category, setCategory] = useState<string>(categories[0]);
   const [isUpdating, setIsUpdating] = useState<boolean>(false);
   const [toDoId, setToDoId] = useState<string>("");
 
@@ -21,11 +23,31 @@ const App: React.FC = () => {
     getAllToDo(setToDo);
   }, []);
 
-  const updateMode = (_id: string, text: string) => {
+  const updateMode = (_id: string, text: string, category: string) => {
     setIsUpdating(true);
     setText(text);
+    setCategory(category);
     setToDoId(_id);
   };
+
+  const chartOptions = useMemo(() => {
+    return {
+      chart: {
+        type: 'pie'
+      },
+      title: {
+        text: 'ToDos by Category'
+      },
+      series: [{
+        type: 'pie',
+        name: 'ToDos',
+        data: categories.map(cat => ({
+          name: cat,
+          y: toDo.filter(item => item.category === cat).length
+        }))
+      }]
+    };
+  }, [toDo]);
 
   return (
     <div className="App">
@@ -38,12 +60,20 @@ const App: React.FC = () => {
             value={text}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => setText(e.target.value)}
           />
+          <select
+            value={category}
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setCategory(e.target.value)}
+          >
+            {categories.map(cat => (
+              <option key={cat} value={cat}>{cat}</option>
+            ))}
+          </select>
           <div
             className="add"
             onClick={
               isUpdating
-                ? () => updateToDo(toDoId, text, setToDo, setText, setIsUpdating)
-                : () => addToDo(text, setText, setToDo)
+                ? () => updateToDo(toDoId, text, category, setToDo, setText, setCategory, setIsUpdating)
+                : () => addToDo(text, category, setText, setCategory, setToDo)
             }
           >
             {isUpdating ? "Update" : "Add"}
@@ -54,11 +84,13 @@ const App: React.FC = () => {
             <ToDo
               key={item._id}
               text={item.text}
-              updateMode={() => updateMode(item._id, item.text)}
+              category={item.category}
+              updateMode={() => updateMode(item._id, item.text, item.category)}
               deleteToDo={() => deleteToDo(item._id, setToDo)}
             />
           ))}
         </div>
+        <HighchartsReact highcharts={Highcharts} options={chartOptions} />
       </div>
     </div>
   );
