@@ -68,7 +68,13 @@ input{
   background-color: #f0f0f0;
   padding: 2px 5px;
   border-radius: 3px;
+  display: inline-block;
+  max-width: 100%; 
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
 }
+
 
 .icon{
   cursor: pointer;
