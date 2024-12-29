@@ -8,21 +8,30 @@ Noufel BOUCHENEB
 [github](https://github.com/yannisandre/Projet_node_CDOF5_Yannis_Guilherme_Dany_Noufel)
 
 #### Our project
-We created a todolist website implementing different technologies seen in class :  
+We created a todolist website implementing different technologies seen in class :
+
 Express: To create a RESTful API that handles HTTP requests for creating, reading, updating, and deleting todo items.
+
 TypeScript: To create the interactive user interface of our Todo application in the web browser (frontend). To manage server-side logic to process requests, interact with the database, and send back responses (backend).
+
 Node.js: To run our server-side TypeScript code and manage the backend of our application.
 
 Then we integrated some other technologies to make it work:
+
 React: To build a dynamic and responsive user interface for our todo application on the frontend.
+
 MongoDB: To store our todo items and their associated data in a flexible, document-based format.
 
 We tried implementing ag-grid but for an unknown reason (no compiling errors) the frontend wasn't loading.
+
 We used highcharts to display the distribution of each category.
+
 As an advanced feature we uploaded the website on the web to make a first step in real web development. We used netlify for frontend and render for backend.
+
 There is a presentation video that is running on netlify
 
 #### Individual work
+
 Dany
 1. Adapt and reword the td's to have a good foundation for the website
 2. React implementation
@@ -45,14 +54,18 @@ Yannis
 
 
 ### To run locally :
+
 in frontend / backend
+
 ```bash
 npm install
 ```
 
 backend folder : 
+
 to use the project you have to connect your mongodb account
 create an account and then add the file .env to the backend folder
+
 ```
 MONGODB_URL=mongodb+srv://db_username:db_password@cluster0.opyyv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 PORT=5000
@@ -71,8 +84,11 @@ npm start
 ### To run online
 
 We managed to deploy the website using Render for the backend and Netlify for the frontend. 
+
 Both being used with their free version, it automatically shuts down due to inactivity. 
+
 So in order to use the website, first click on the backend link [Render](https://todo-app-backend-67og.onrender.com/) then wait for a few minutes until it loads and you see all the database in JSON format.
+
 Then you can run the frontend [Netlify](https://teal-genie-09261e.netlify.app/) and everything will work.
 
 #### Site
