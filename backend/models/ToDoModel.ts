@@ -18,5 +18,3 @@ const todoSchema: Schema<IToDo> = new Schema({
 });
 
 export default mongoose.model<IToDo>('ToDo', todoSchema);
-
-
