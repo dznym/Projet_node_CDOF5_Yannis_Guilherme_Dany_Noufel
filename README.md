@@ -16,6 +16,8 @@ TypeScript: To create the interactive user interface of our Todo application in 
 
 Node.js: To run our server-side TypeScript code and manage the backend of our application.
 
+Swagger : To document and test our API endpoints efficiently, we implemented Swagger, providing a clear interface for API exploration and interaction.
+
 Then we integrated some other technologies to make it work:
 
 React: To build a dynamic and responsive user interface for our todo application on the frontend.
@@ -81,7 +83,8 @@ frontend folder :
 ```bash
 npm start
 ```
-### To run online
+
+### To run online (advanced feature)
 
 We managed to deploy the website using Render for the backend and Netlify for the frontend. 
 
@@ -90,6 +93,8 @@ Both being used with their free version, it automatically shuts down due to inac
 So in order to use the website, first click on the backend link [Render](https://todo-app-backend-67og.onrender.com/) then wait for a few minutes until it loads and you see all the database in JSON format.
 
 Then you can run the frontend [Netlify](https://teal-genie-09261e.netlify.app/) and everything will work.
+
+If you then want to access Swagger just go to [Swagger](https://todo-app-backend-67og.onrender.com/api-docs/)
 
 #### Site
 ![image site](images/site.png)
